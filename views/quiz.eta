@@ -1,0 +1,39 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h1>Quiz!</h1>
+<h3>Question title: </h3>
+<p><%= it.question.title%></p>
+<h3> Text: </h3>
+<p><%= it.question.question_text%></p>
+
+<% if (it.answer_options && it.answer_options.length > 0) { %>
+<h3>Options:</h3>
+<table>
+  <tr>
+    <td>Option number</td>
+    <td>Option</td>
+    <td> </td>
+  <tr>
+<% let num = 1; %>
+<% it.answer_options.forEach(answer_option => { %>
+  <tr>
+    <td><%= num %></td>
+    <td><%= answer_option.option_text %></td>
+    <td>
+      <form method="POST" action="/quiz/<%= answer_option.question_id %>/options/<%= answer_option.id %> ">
+          <input type="submit" value="Choose"/>
+      </form>
+    </td>
+  </tr>
+  <% num = num + 1; %>
+<% }); %>
+</table>
+
+<% } else { %>
+
+<p>No option yet.</p>
+
+<% } %>
+
+<a href="/quiz">Another question</a><br/>

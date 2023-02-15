@@ -1,0 +1,26 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+<h2>Your answers:</h2>
+
+<% if (it.answersData.length !== 0) { %>
+<% let number = 1; %>
+<table>
+    <tr>
+        <td>Number</td>
+        <td>Question</td>
+        <td>Your answer</td>
+        <td>Correctness</td>
+    <tr>
+    <% it.answersData.forEach((answer) => { %>
+    <tr> 
+        <td><%= number %></td>
+        <td><%= answer.qText %></td>
+        <td><%= answer.oText %></td>
+        <td><%= answer.correctness %></td>
+    </tr>
+    <% number = number + 1; %>
+    <% }); %>
+</table>
+<% } else { %>
+<p>You didn't answer any question!<p>
+<% } %>

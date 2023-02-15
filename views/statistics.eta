@@ -1,0 +1,28 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h1>Statistics</h1>
+<p>Number of answers you have given: <%= it.answer_Count %>  &nbsp;&nbsp;&nbsp;
+    <a href="/statistics/answers">See your answers</a> 
+</p>
+
+
+<p>Number of your correct answers: <%= it.correct_Count %> </p>
+<p>Number of answers given to questions created by you: <%= it.answer_given_count %>
+<p>Top 5 Users: </p>
+<% let rank = 1; %>
+<table>
+    <tr>
+        <td>Rank</td>
+        <td>User email</td>
+        <td>Number of correct answers</td>
+    </tr>
+    <% it.topUsers.forEach((userInfo) => { %>
+    <tr>
+        <td><%= rank %></td>
+        <td><%= userInfo.email %></td>
+        <td><%= userInfo.correctAnswersCount %></td>
+    </tr>
+    <% rank = rank + 1; %>
+    <% });%>
+</table>

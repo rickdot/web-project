@@ -1,0 +1,63 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h3>Question information</h3>
+<p>Title: <%= it.question.title %> </p>
+<p>Text: <%= it.question.question_text %> </p>
+
+<h3>Add an answer option</h3>
+
+<form method="POST" action="/questions/<%= it.question.id %>/options">
+    Option text:<br/>
+    <textarea type="text" name="option_text" value= "<%=it.option_text%>"  ></textarea><br/>
+    Correctness:<br/>
+    <% if (it.correctness) { %>
+    <input type="checkbox" name="is_correct" checked="false" /><br/>
+    <% } else { %>
+    <input type="checkbox" name="is_correct" /><br/>
+    <% } %>
+    <input type="submit" value="Add"/>
+</form>
+
+<% if (it.errors) { %>
+<p>Input error(s):</p>
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+
+<h3>All answer options</h3>
+
+<% if (it.options && it.options.length > 0) { %>
+
+<table>
+    <tr>
+        <td>Option text</td>
+        <td>Correctness</td>
+        <td> </td>
+    </tr>
+<% it.options.forEach(option => { %>
+  <tr>
+    <td><%= option.option_text %></td>
+    <td><%= option.is_correct %></td>
+    <td>
+        <form method="POST" action="/questions/<%= it.question.id %>/options/<%= option.id %>/delete ">
+            <input type="submit" value="Delete option">
+        </form>
+    </td>
+  </tr>
+<% }); %>
+</table>
+
+<% } else { %>
+
+<p>No option yet.</p>
+<form method="POST" action="/questions/<%= it.question.id %>/delete" >
+    <input type="submit" value="Delete this question!">
+</form>
+<% } %>

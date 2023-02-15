@@ -1,0 +1,31 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h1> Main page </h1>
+
+<% if (!it.loginState) { %>
+    <form method="GET" action="/auth/login">
+        <input type="submit" value="Login"/>
+    </form>
+    <form method="GET" action="/auth/register">
+        <input type="submit" value="Register"/>
+    </form>
+<% } else { %>
+    <form method="GET" action="/questions">
+        <input type="submit" value="View and create questions"/>
+    </form>
+    <form method="GET" action="/quiz">
+        <input type="submit" value="Quiz(To answer questions)"/>
+    </form>
+    <form method="GET" action="/statistics">
+        <input type="submit" value="View statistics"/>
+    </form>
+</br>
+    <form method="GET" action="/logout">
+        <input type="submit" value="Log out"/>
+    </form>
+<% } %>
+
+
+<h3>Description of this application</h3>
+<p>This is an application for asking questions, answering questions and viewing statistics. <a href="/description">See details</a></p>

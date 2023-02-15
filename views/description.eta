@@ -1,0 +1,10 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h1> App Description </h1>
+<p>This is an application for users to ask and answer questions. 
+This app provides user <a href="/auth/register">register</a>  and <a href="/auth/login">login</a> functionalities, only logined users can ask or answer questions. 
+Users can create their own questions and add answer options with correctness. A question can have multiple correct answers. 
+Users can answer random questions in "Quiz" by choosing one option, and then will be shown the results. 
+Users can also view the statistics of their own questions and answers, as well as a rank for top 5 users with most correct answers.</p>
+<a href="/">Back to main page</a>

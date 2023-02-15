@@ -1,0 +1,51 @@
+<% layout('./layouts/layout.eta') %>
+</br>
+</br>
+<h1>Your questions</h1>
+
+<% if (it.questions && it.questions.length > 0) { %>
+
+<table>
+  <tr>
+    <td>Title</td>
+    <td>Text</td>
+  </tr>
+  <% it.questions.forEach(question => { %>
+  <tr>
+    <td><a href="/questions/<%= question.id%>"><%= question.title %></a></td>
+    <td><%= question.question_text %></td>
+  </tr>
+  <% }); %>
+</table>
+
+
+
+<% } else { %>
+
+<p>No question yet.</p>
+
+<% } %>
+
+
+<h2>Add a new question</h2>
+
+
+<form method="POST" action="/questions">
+  Question title:<br/>
+  <input type="text" name="title" /><br/>
+  Question text:<br/>
+  <textarea name="question_text"></textarea><br/>
+  <input type="submit" value="Add"/>
+</form>
+
+<% if (it.errors) { %>
+<p> Input error(s): </p>
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
